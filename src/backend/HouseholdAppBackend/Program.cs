@@ -14,6 +14,8 @@ builder.Services.AddCors(options => {
             .AllowAnyMethod());
 });
 
+builder.Services.AddSingleton<InMemoryCache>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

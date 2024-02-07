@@ -1,0 +1,8 @@
+﻿@host=http://localhost:5260
+
+POST {{host}}/Reminders/SetReminder
+Content-Type: application/json
+
+{
+    "reminder": "Hello world"
+}

@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import RemindersListComponent from '@/components/RemindersList';
+import AddReminderComponent from '@/components/AddReminder';
 
 export default function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState();
-	const [weatherForecasts, setWeatherForecasts] = useState();
+	const [reminders, setReminders] = useState([]);
+
+	function onReminderAdded(reminder) {
+		const newReminders = [...reminders, reminder]
+		setReminders(newReminders);
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true)
 
 			try {
-				const response = await fetch('http://localhost:5260/WeatherForecast');
+				const response = await fetch('http://localhost:5260/Reminders/GetReminders');
 				const data = await response.json();
-				setWeatherForecasts(data);
+				setReminders(data);
 			} catch (error) {
 				setIsError(true)
 				setErrorMessage(error.message)
@@ -23,7 +30,7 @@ export default function App() {
 		};
 
 		fetchData();
-	}, [])
+		}, [])
 
 	if (isError) {
 		return <div>Error occured : {errorMessage}</div>
@@ -33,15 +40,10 @@ export default function App() {
 		return <div>Loading...</div>
 	}
 
-	return (
-		<div>
-		<h1>Forecasts:</h1>
-		<ul>
-				{weatherForecasts.map((forecast) => {
-					return <li key={forecast}>{forecast.summary}</li>;
-					})
-				}
-			</ul>
-		</div>
-		);
+  return (
+		<>
+			<RemindersListComponent reminders={reminders}/>
+			<AddReminderComponent onReminderAdded={onReminderAdded}/>
+		</>
+  )
 }

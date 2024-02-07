@@ -1,0 +1,4 @@
+@host=http://localhost:5260
+
+GET {{host}}/Reminders/GetReminders
+Content-Type: application/json

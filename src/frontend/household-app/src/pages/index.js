@@ -3,6 +3,8 @@ import App from "./App"
 
 export default function Home() {
   return (
-    <App/>
+    <div className="max-w-md mx-auto mt-8">
+			<App/>
+		</div>
   )
 }
