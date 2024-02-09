@@ -13,6 +13,11 @@ export default function App() {
 		setReminders(newReminders);
 	}
 
+	function onReminderDeleted(reminder) {
+		const newReminders = reminders.filter(item => item !== reminder)
+		setReminders(newReminders);
+	}
+
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true)
@@ -42,7 +47,7 @@ export default function App() {
 
   return (
 		<>
-			<RemindersListComponent reminders={reminders}/>
+			<RemindersListComponent reminders={reminders} onDeleteReminder={onReminderDeleted} />
 			<AddReminderComponent onReminderAdded={onReminderAdded}/>
 		</>
   )

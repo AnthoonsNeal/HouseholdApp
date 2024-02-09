@@ -1,11 +1,15 @@
 public class InMemoryCache
 {
-    readonly List<string> _list = new();
+    public List<Reminder> Entries { get; } = new();
 
-    public List<string> Entries => _list;
-
-    public void Add(string entry)
+    public Reminder Add(string text)
     {
-        _list.Add(entry);
+        var reminder = new Reminder(Guid.NewGuid(), text);
+        Entries.Add(reminder);
+        return reminder;
     }
+
+    public void Remove(Guid id) => Entries.RemoveAll(e => e.guid == id);
 }
+
+public record Reminder(Guid guid, string text);

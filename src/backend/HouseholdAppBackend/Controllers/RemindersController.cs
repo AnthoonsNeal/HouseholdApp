@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HouseholdAppBackend.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HouseholdAppBackend.Controllers;
 
@@ -22,7 +23,14 @@ public class RemindersController : ControllerBase
     [HttpPost("SetReminder")]
     public IActionResult SetReminder([FromBody] SetReminderRequest request)
     {
-        _inMemoryCache.Add(request.reminder);
+        var reminder = _inMemoryCache.Add(request.Reminder);
+        return Ok(reminder);
+    }
+
+    [HttpDelete("DeleteReminder")]
+    public IActionResult DeleteReminder([FromBody] DeleteReminderRequest request)
+    {
+        _inMemoryCache.Remove(new Guid(request.Id));
         return Ok();
     }
 }

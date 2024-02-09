@@ -1,3 +1,5 @@
+namespace HouseholdAppBackend.Contracts;
+
 public record SetReminderRequest(
-    string reminder
+    string Reminder
 );

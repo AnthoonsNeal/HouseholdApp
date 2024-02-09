@@ -16,7 +16,7 @@ export default function AddReminderComponent({ onReminderAdded }) {
 	}
 
 	return (
-		<div className="flex items-center">
+		<div className="flex justify-between">
 			<input
 				className="border border-gray-300 rounded-l py-2 px-4 focus:outline-none focus:border-blue-500"
 				type="text"
