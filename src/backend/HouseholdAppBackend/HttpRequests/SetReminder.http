@@ -1,4 +1,5 @@
-﻿@host=http://localhost:5260
+﻿# @host=http://localhost:5260
+@host=https://householdapp.azurewebsites.net
 
 POST {{host}}/Reminders/SetReminder
 Content-Type: application/json

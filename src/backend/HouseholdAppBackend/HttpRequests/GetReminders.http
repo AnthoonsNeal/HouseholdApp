@@ -1,4 +1,5 @@
-@host=http://localhost:5260
+# @host=http://localhost:5260
+@host=https://householdapp.azurewebsites.net
 
 GET {{host}}/Reminders/GetReminders
 Content-Type: application/json
